@@ -95,12 +95,15 @@ let arrObjPintar = JSON.parse(localStorage.getItem("cochesMultas")) || [];
 comprobarBoton.addEventListener('click', () =>{
     validarInput();
     mensaje.innerHTML = "";
+    comprobarInput.value = "";
 });
 
 clear.addEventListener('click', () => {
   localStorage.clear('cochesMultas');
   arrObjPintar = [];
   pintarTabla(arrObjPintar);
+  mensaje.innerHTML = "";
+  comprobarInput.value = "";
 });
 
 const validarInput = () => {
