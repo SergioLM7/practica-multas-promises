@@ -1,1 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+}
 
+header {
+    text-align: center;
+    margin-top: 5%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+header h2 {
+    margin-bottom: 1%;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+#mensaje {
+    margin-top: 2%;
+    text-align: center;
+}
+
+#comprobar {
+    margin-left: auto;
+    margin-top: 2%;
+}
+
+
+#tabla {
+    width: 100%;
+    text-align: center;
+    border-spacing: 0;
+}
+
+#tabla th {
+    width: 25%;
+    border-top: 2px solid rgb(87, 87, 154);
+    border-bottom: 2px solid rgb(87, 87, 154);
+}
+
+#tabla td {
+    border-bottom: 2px solid rgb(87, 87, 154);
+}
+
+#tabla tr {
+    height: 40px;
+}
+
+@media screen and (max-width:768px) {
+    header {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    
+    main {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
