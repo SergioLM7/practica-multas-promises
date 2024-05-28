@@ -5,6 +5,7 @@ const comprobarInput = document.querySelector('#comprobarInput');
 let comprobarInputValue;
 const comprobarBoton = document.querySelector('#comprobarBoton');
 const tablaBody = document.querySelector('#tablaBody');
+const clear = document.querySelector('#clear');
 
 const regExpMatricula = /^[\d]{4}\-[A-Z]{3}$/;
 
@@ -89,11 +90,17 @@ const objValidarInput = {
     matricula: false
 };
 
-let arrObjPintar = [];
+let arrObjPintar = JSON.parse(localStorage.getItem("cochesMultas")) || [];
 
 comprobarBoton.addEventListener('click', () =>{
     validarInput();
     mensaje.innerHTML = "";
+});
+
+clear.addEventListener('click', () => {
+  localStorage.clear('cochesMultas');
+  arrObjPintar = [];
+  pintarTabla(arrObjPintar);
 });
 
 const validarInput = () => {
@@ -134,9 +141,10 @@ const getInforMatricula = async(comprobarInputValue) => {
         const foundMatricula = bbddCoches.find((obj) => obj.matricula === comprobarInputValue);
         const foundMulta = bbddMultas.find((obj) => obj.matricula === comprobarInputValue)?.multas;
         foundMatricula.multas = foundMulta.length;
-        const foundDuplicate = arrObjPintar.find((obj) => obj === foundMatricula);
+        const foundDuplicate = arrObjPintar.find((obj) => obj.matricula === foundMatricula.matricula);
         if (!foundDuplicate) {
             arrObjPintar.push(foundMatricula);
+            localStorage.setItem("cochesMultas", JSON.stringify(arrObjPintar));
         } else {
             alert("Esta matrícula está duplicada");
         }
@@ -168,8 +176,6 @@ const pintarTabla = (arrObjPintar) => {
         fragment.append(trTable);
     });
     tablaBody.append(fragment);
-    console.log(arrObjPintar);
 };
 
-
-
+pintarTabla(arrObjPintar);
